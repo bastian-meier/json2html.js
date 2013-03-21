@@ -5,7 +5,7 @@
 	 * MIT licensed
 	 *
 	 * Copyright (C) 2013 mnemexxx 
-	 * A weekend project by Bastian Meier (@afshinmeh)
+	 * A weekend project by Bastian Meier
 	 */
 	
 (function () {
