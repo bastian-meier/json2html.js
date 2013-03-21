@@ -8,11 +8,10 @@
 	 * A weekend project by Bastian Meier (@afshinmeh)
 	 */
 	
-
 (function () {
 
   	//Default config/variables
-	var VERSION = "0.1";
+	var VERSION = "0.0.2";
 	
 	/**
 	 * json2html main class
@@ -23,6 +22,7 @@
 	 */
 	function json2html(obj, target) {
 		_appendHtml( obj, target );
+		_cleanUp();
 	}
 	
     
@@ -64,14 +64,15 @@
         	var id = obj.id;
         	
     		var subElement = $('<' + obj.tag + '>');	
+    		subElement.attr('class' , obj.classname);
     		
     		//if there is no id, we need to create a random id
         	if(id == undefined){
         		id = _getRandomId();
+        		subElement.addClass('json2htmlIdAdded');
         	}
         	// sets id and class ...
         	subElement.attr('id' , id);
-        	subElement.attr('class' , obj.classname);
         	
         	// appends the subelement to parent element
         	$('#' + parent).append(subElement);
@@ -152,6 +153,25 @@
     	return 'j2h' + time + rnd;
     }; 
     
+    /**
+     * removes temp ids and classes from html
+     * 
+     * @api private
+     * @method _cleanUp
+	 */
+    function _cleanUp (){
+        $('.json2htmlIdAdded').each( function(index){
+    		var classname = $(this).attr('class') ;
+    		if(classname == 'json2htmlIdAdded'){
+    			$(this).removeAttr("class");
+    		}else{
+    			$(this).removeClass('json2htmlIdAdded');
+    		}
+    		$(this).removeAttr('id');
+    	});
+    };     
+    
+   
     /**
      * Current json2html version
      *

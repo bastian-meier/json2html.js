@@ -5,7 +5,7 @@ $json2html=
 '
 "json2html":
 	[{	
-		"classname": "special_class",
+		"classname": "special_class test",
 		"tag": "div",
 		"content": 
 			[{
